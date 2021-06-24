@@ -51,5 +51,7 @@ store.dispatch(buyCake())
 // const unsubscribe = store.subscribe(() => console.log('Updated state', store.getState()))
 // unsbscribe()
 
+// ---------------- run : node index ---------------
+
 
 
