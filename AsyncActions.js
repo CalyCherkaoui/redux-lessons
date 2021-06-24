@@ -2,6 +2,7 @@ const redux = require('redux')
 const createStore = redux.createStore
 const applyMiddleware = redux.applyMiddleware
 const thunkMiddleware = require('redux-thunk').default
+const axios = require('axios')
 
 // 1. Initilizing state and defining actions
 const initialState = {
@@ -14,7 +15,7 @@ const FETCH_USERS_REQUEST = 'FETCH_USERS_REQUEST'
 const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS'
 const FETCH_USERS_FAILURE = 'FETCH_USERS_FAILURE'
 
-// 2. Implemnt actions creators
+// 2. Implement actions creators
 const fetchUsersRequest = () => {
   return {
     type: FETCH_USERS_REQUEST
@@ -35,8 +36,22 @@ const fetchUsersFailure = (errorMsg) => {
   }
 }
 
+const fetchUsers = () => {
+  return function(dispatch) {
+    dispatch(fetchUsersRequest())
+    axios.get('https://jsonplaceholder.typicode.com/users')
+      .then(response => {
+        const users = response.data.map(user => user.name)
+        dispatch(fetchUsersSuccess(users))
+      })
+      .catch(error => {
+        dispatch(fetchUsersFailure(error.message))
+      })
+  }
+}
+
 // 3. Define reducer
-const reducer = (state = initialstate, action) => {
+const reducer = (state = initialState, action) => {
   switch(action.type) {
     case FETCH_USERS_REQUEST:
       return {
@@ -59,3 +74,5 @@ const reducer = (state = initialstate, action) => {
 }
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware))
+store.subscribe(() => {console.log(store.getState())})
+store.dispatch(fetchUsers())
