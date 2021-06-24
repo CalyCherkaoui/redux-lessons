@@ -47,3 +47,9 @@ store.dispatch(buyCake())
 store.dispatch(buyCake())
 store.dispatch(buyCake())
 
+// 5. to unsubscribe we use return in subscribe method
+// const unsubscribe = store.subscribe(() => console.log('Updated state', store.getState()))
+// unsbscribe()
+
+
+
