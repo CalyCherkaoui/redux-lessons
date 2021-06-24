@@ -1,4 +1,7 @@
-// 0. Initilizing state and defining actions
+const redux = require('redux')
+const createStore = redux.createStore
+
+// 1. Initilizing state and defining actions
 const initialState = {
   loading: false,
   users: [],
@@ -9,7 +12,7 @@ const FETCH_USERS_REQUEST = 'FETCH_USERS_REQUEST'
 const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS'
 const FETCH_USERS_FAILURE = 'FETCH_USERS_FAILURE'
 
-// 1. Implemnt actions creators
+// 2. Implemnt actions creators
 const fetchUsersRequest = () => {
   return {
     type: FETCH_USERS_REQUEST
@@ -30,7 +33,7 @@ const fetchUsersFailure = (errorMsg) => {
   }
 }
 
-// Define reducer
+// 3. Define reducer
 const reducer = (state = initialstate, action) => {
   switch(action.type) {
     case FETCH_USERS_REQUEST:
@@ -52,3 +55,5 @@ const reducer = (state = initialstate, action) => {
       }
   }
 }
+
+const store = createStore(reducer)
