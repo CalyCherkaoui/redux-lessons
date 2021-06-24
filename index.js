@@ -40,7 +40,8 @@ const store = createStore(reducer)
 console.log('initial state', store.getState())
 
 // 3. Allow app to subscribe to changes in the store
-store.subscribe(() => console.log('Updated state', store.getState()))
+// store.subscribe(() => console.log('Updated state', store.getState()))
+const unsubscribe = store.subscribe(() => console.log('Updated state', store.getState()))
 
 // 4. dispatch method to update the state 3 times
 store.dispatch(buyCake())
@@ -48,8 +49,7 @@ store.dispatch(buyCake())
 store.dispatch(buyCake())
 
 // 5. to unsubscribe we use return in subscribe method
-// const unsubscribe = store.subscribe(() => console.log('Updated state', store.getState()))
-// unsbscribe()
+unsbscribe()
 
 // ---------------- run : node index ---------------
 
