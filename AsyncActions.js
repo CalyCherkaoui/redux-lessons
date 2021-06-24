@@ -1,5 +1,6 @@
 const redux = require('redux')
 const createStore = redux.createStore
+const applyMiddleware = redux.applyMiddleware
 
 // 1. Initilizing state and defining actions
 const initialState = {
@@ -56,4 +57,4 @@ const reducer = (state = initialstate, action) => {
   }
 }
 
-const store = createStore(reducer)
+const store = createStore(reducer, applyMiddleware)
