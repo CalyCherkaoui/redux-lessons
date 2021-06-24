@@ -49,7 +49,7 @@ store.dispatch(buyCake())
 store.dispatch(buyCake())
 
 // 5. to unsubscribe we use return in subscribe method
-unsbscribe()
+unsubscribe()
 
 // ---------------- run : node index ---------------
 

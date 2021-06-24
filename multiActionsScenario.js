@@ -1,7 +1,7 @@
 const redux = require('redux')
 
 const BUY_CAKE = 'BUY_CAKE'
-
+const BUY_ICECREAM = 'BUY_ICECREAM'
 // action creator --------------------------------------
 
 function buyCake() {
@@ -11,10 +11,18 @@ function buyCake() {
   }
 }
 
+function buyIcecream() {
+  return {
+    type: BUY_ICECREAM,
+    info: 'action of buying ice cream'
+  }
+}
+
 // initial state
 
 const initialState = {
-  numOfCakes: 10
+  numOfCakes: 10,
+  numOfIcecreams: 20
 }
 
 // reducer(prvious sate, action) => new sate --------------
@@ -23,6 +31,11 @@ const reducer = (state = initialState, action) => {
     case BUY_CAKE: return {
       ...state, // make copy of state obj and then only update numOfCake property
       numOfCakes: state.numOfCakes - 1
+    }
+
+    case BUY_ICECREAM: return {
+      ...state,
+      numOfIcecreams: state.numOfIcecreams - 1
     }
 
     default: return state
@@ -46,8 +59,10 @@ const unsubscribe = store.subscribe(() => console.log('Updated state', store.get
 store.dispatch(buyCake())
 store.dispatch(buyCake())
 store.dispatch(buyCake())
+store.dispatch(buyIcecream())
+store.dispatch(buyIcecream())
 
 // 5. to unsubscribe we use return in subscribe method
-unsbscribe()
+unsubscribe()
 
 // ---------------- run : node index ---------------
