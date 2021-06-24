@@ -53,8 +53,16 @@ const IcecreamReducer = (state = initialIcecreamState, action) => {
 // Implementing the App Store ----------------------------
 const createStore = redux.createStore
 
-// 1. holds app's state
-const store = createStore(reducer)
+// 0. we combine reducers
+const combineReducers = redux.combineReducers
+
+const rootReducers = combineReducers({
+  cake: cakeReducer,
+  icecream: IcecreamReducer
+})
+
+// 1. holds app's state use combined reducers
+const store = createStore(rootReducers)
 
 // 2. access to state via getState method
 console.log('initial state', store.getState())
