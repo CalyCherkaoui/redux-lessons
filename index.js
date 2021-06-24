@@ -1,3 +1,6 @@
+// import redux from 'redux' in recat app but here we are in node app so we can use require
+const redux = require('redux')
+
 const BUY_CAKE = 'BUY_CAKE'
 
 // action creator
@@ -26,3 +29,8 @@ const reducer = (state = initialState, action) => {
     default: return state
   }
 }
+
+// Implementing the App Store
+const createStore = redux.createStore
+
+const store = createStore(reducer)
