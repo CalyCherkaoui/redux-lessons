@@ -19,6 +19,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch(action.type) {
     case BUY_CAKE: return {
+      ...state, // make copy of state obj and then only update numOfCake property
       numOfCakes: state.numOfCakes - 1
     }
 
