@@ -3,7 +3,7 @@ const redux = require('redux')
 
 const BUY_CAKE = 'BUY_CAKE'
 
-// action creator
+// action creator --------------------------------------
 
 function buyCake() {
   return {
@@ -18,7 +18,7 @@ const initialState = {
   numOfCakes: 10
 }
 
-// reducer(prvious sate, action) => new sate
+// reducer(prvious sate, action) => new sate --------------
 const reducer = (state = initialState, action) => {
   switch(action.type) {
     case BUY_CAKE: return {
@@ -30,7 +30,13 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-// Implementing the App Store
+// Implementing the App Store ----------------------------
 const createStore = redux.createStore
 
+// 1. holds app's state
 const store = createStore(reducer)
+
+// 2. access to state via getState method
+console.log('initial state', store.getState())
+
+// 3. Allow app to subscri
