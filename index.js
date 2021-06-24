@@ -39,4 +39,5 @@ const store = createStore(reducer)
 // 2. access to state via getState method
 console.log('initial state', store.getState())
 
-// 3. Allow app to subscri
+// 3. Allow app to subscribe to changes in the store
+store.subscribe(() => console.log('Updated state', store.getState()))
