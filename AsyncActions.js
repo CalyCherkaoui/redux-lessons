@@ -1,6 +1,7 @@
 const redux = require('redux')
 const createStore = redux.createStore
 const applyMiddleware = redux.applyMiddleware
+const thunkMiddleware = require('redux-thunk').default
 
 // 1. Initilizing state and defining actions
 const initialState = {
@@ -57,4 +58,4 @@ const reducer = (state = initialstate, action) => {
   }
 }
 
-const store = createStore(reducer, applyMiddleware)
+const store = createStore(reducer, applyMiddleware(thunkMiddleware))
