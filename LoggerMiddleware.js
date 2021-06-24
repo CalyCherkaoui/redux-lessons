@@ -5,6 +5,10 @@ const reduxLogger = require('redux-logger')
 // Create  Logger -----------------------------------
 const logger = reduxLogger.createLogger()
 
+// Apply Middleware
+const applyMiddleware = redux.applyMiddleware()
+
+// Actions
 const BUY_CAKE = 'BUY_CAKE'
 const BUY_ICECREAM = 'BUY_ICECREAM'
 // action creator --------------------------------------
@@ -61,20 +65,20 @@ const createStore = redux.createStore
 // 0. we combine reducers
 const combineReducers = redux.combineReducers
 
-const rootReducers = combineReducers({
+const rootReducer = combineReducers({
   cake: cakeReducer,
   icecream: IcecreamReducer
 })
 
-// 1. holds app's state use combined reducers
-const store = createStore(rootReducers)
+// 1. holds app's state use combined reducers and use the logger middleware
+const store = createStore(rootReducer, applyMiddleware(logger))
 
 // 2. access to state via getState method
 console.log('initial state', store.getState())
 
 // 3. Allow app to subscribe to changes in the store
-// store.subscribe(() => console.log('Updated state', store.getState()))
-const unsubscribe = store.subscribe(() => console.log('Updated state', store.getState()))
+// const unsubscribe = store.subscribe(() => console.log('Updated state', store.getState()))
+const unsubscribe = store.subscribe(() => {})
 
 // 4. dispatch method to update the state 3 times
 store.dispatch(buyCake())
